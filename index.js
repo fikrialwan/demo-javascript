@@ -33,6 +33,10 @@ const showNumber = (lastNumber, evenOrOdd) => {
   }
 }
 
-const lastNumber = getLastNumber();
-const evenOrOdd = getEvenOrOdd();
-showNumber(lastNumber, evenOrOdd);
+const startButton = document.querySelector('button');
+startButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  const lastNumber = getLastNumber();
+  const evenOrOdd = getEvenOrOdd();
+  showNumber(lastNumber, evenOrOdd);
+});
