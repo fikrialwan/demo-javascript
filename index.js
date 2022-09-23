@@ -3,7 +3,7 @@ const getLastNumber = () => {
   if (lastNumber > 0) {
     return lastNumber;
   } else {
-    getLastNumber();
+    return getLastNumber();
   }
 }
 
@@ -12,12 +12,12 @@ const getEvenOrOdd = () => {
   if (evenOrOdd === "odd" || evenOrOdd === "even") {
     return evenOrOdd;
   } else {
-    getEvenOrOdd();
+    return getEvenOrOdd();
   }
 }
 
 const showNumber = (lastNumber, evenOrOdd) => {
-  console.log(`${evenOrOdd} number from 1 = ${lastNumber}`);
+  console.log(`${evenOrOdd} number from 1 - ${lastNumber}`);
   if (evenOrOdd === 'odd') {
     for (let number = 1; number <= lastNumber; number++) {
       if (number % 2 !== 0) {
