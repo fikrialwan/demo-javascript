@@ -34,8 +34,7 @@ const showNumber = (lastNumber, evenOrOdd) => {
 }
 
 const startButton = document.querySelector('button');
-startButton.addEventListener('click', (event) => {
-  event.preventDefault();
+startButton.addEventListener('click', () => {
   const lastNumber = getLastNumber();
   const evenOrOdd = getEvenOrOdd();
   showNumber(lastNumber, evenOrOdd);
