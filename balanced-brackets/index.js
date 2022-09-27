@@ -1,12 +1,13 @@
 const brackets = {
   "[": "]",
   "{": "}",
-  "(": ")"
-}
+  "(": ")",
+  "<": ">",
+};
 
 const convertStringToArray = (string) => {
   return string.split("");
-}
+};
 
 const checkIsLeftBracket = (bracket) => {
   for (const key in brackets) {
@@ -15,9 +16,9 @@ const checkIsLeftBracket = (bracket) => {
     }
   }
   return false;
-}
+};
 
-const checkBalancedBrackets = (inputBracket) => {
+const checkBracketsAreBalanced = (inputBracket) => {
   const tempBracket = [];
 
   const inputBracketArray = convertStringToArray(inputBracket);
@@ -39,35 +40,45 @@ const checkBalancedBrackets = (inputBracket) => {
   }
 
   return true;
-}
+};
 
-const checkWordIsOnlyBracket = (inputBracket) => {
+const checkStringOnlyContainsBracket = (inputBracket) => {
   let isOnlyBracket = true;
   const inputBracketArray = convertStringToArray(inputBracket);
+
   for (const bracket of inputBracketArray) {
     isOnlyBracket = false;
     for (const key in brackets) {
       if (bracket == key || bracket == brackets[key]) {
-        isOnlyBracket = true
+        isOnlyBracket = true;
       }
     }
-
     if (!isOnlyBracket) {
       break;
     }
   }
   return isOnlyBracket;
-}
+};
 
 const main = () => {
   try {
     const inputBrackets = prompt("Input the brackets");
-    const isInputBracketsOnlyBracket = checkWordIsOnlyBracket(inputBrackets);
-    if (!isInputBracketsOnlyBracket) throw new Error("You must only input brackets character");
-    const isBalancedBrackets = checkBalancedBrackets(inputBrackets);
-    console.log(`Brackets is${isBalancedBrackets ? " " : " not "}balanced`);
+    const isInputBracketsOnlyBracket =
+      checkStringOnlyContainsBracket(inputBrackets);
+
+    if (!isInputBracketsOnlyBracket) {
+      throw new Error("You must only input brackets character");
+    }
+
+    const isBalancedBrackets = checkBracketsAreBalanced(inputBrackets);
+
+    console.log(`Brackets is ${isBalancedBrackets ? " " : " not "}balanced`);
   } catch (error) {
     console.error(`${error}, try again`);
-    main();
   }
-}
+};
+
+const testCases = () => {
+  console.assert(checkBracketsAreBalanced("{[]"), "not balanced");
+  console.assert(checkBracketsAreBalanced("<[{()}]>"), "not balanced");
+};
