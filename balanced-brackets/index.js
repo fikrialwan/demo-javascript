@@ -60,12 +60,14 @@ const checkWordIsOnlyBracket = (inputBracket) => {
 }
 
 const main = () => {
-  const inputBrackets = prompt("Input the brackets");
-  const isInputBracketsOnlyBracket = checkWordIsOnlyBracket(inputBrackets);
-  if (isInputBracketsOnlyBracket) {
+  try {
+    const inputBrackets = prompt("Input the brackets");
+    const isInputBracketsOnlyBracket = checkWordIsOnlyBracket(inputBrackets);
+    if (!isInputBracketsOnlyBracket) throw new Error("You must only input brackets character");
     const isBalancedBrackets = checkBalancedBrackets(inputBrackets);
     console.log(`Brackets is${isBalancedBrackets ? " " : " not "}balanced`);
-  } else {
+  } catch (error) {
+    console.error(`${error}, try again`);
     main();
   }
 }
